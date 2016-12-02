@@ -1,0 +1,25 @@
+$TTL 30
+
+@       IN      SOA     ns1.dns.workshop. admins.dns.workshop. (
+                        2015081301      ; serial
+                        21600   ; refresh after 6 hours
+                        3600    ; retry after 1 hour
+                        604800  ; expire after 1 week
+                        86400 ) ; minimum TTL of 1 day
+
+
+@       IN      NS      ns1.dns.workshop.
+@       IN      NS      ns-ext.domain.domain.
+
+@ 	IN	MX	10	mx1.dns.workshop.
+@	IN	MX	20	mx.mail.workshop.
+
+@	IN	A	192.168.99.200
+
+ns1	IN	A	10.0.0.201
+
+mx1	IN	A	10.0.0.25
+mx1	IN	A	10.0.255.25
+
+
+

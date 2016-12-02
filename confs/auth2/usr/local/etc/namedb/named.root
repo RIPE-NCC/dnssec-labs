@@ -1,0 +1,32 @@
+$TTL 10
+@	IN	SOA	a.root-servers.workshop. admins.workshop. (
+                        2015010105      ; serial
+                        30   ; refresh after 6 hours
+                        60    ; retry after 1 hour
+                        604800  ; expire after 1 week
+                        86400 ) ; minimum TTL of 1 day
+
+
+.		IN		NS	a.root-servers.workshop.
+.               IN              NS      b.root-servers.workshop.
+
+. IN DNSKEY 256 3 8 AwEAAdBkYlAphoDGFC+K/ZN4IeBLeWnVo41oJAqvQiPJMO13zOqVGwk8 0PnP0KKDjiPeLRiPH+/ilnGmQtsMXM/2Jsq+pGLKuaFtJ05X2CE6bF4q wco0bT82ptoPAtvD1+cu0nG22ZJpmwagXapLn1d2Hy4PDJgg07SDeWyc GEVowKHMz+jsa11vGN3yILSVJzmT980pB5g8DTJFkxsYaenrxsRdK4q1 L9/HBN+FWFAaapJJTr4MExagINjwRuCxN/Bf+Z9UusUtyMgV+pT9YQBj /CHErIMWKYD7hAlYj+CfaYniUJMH+uZylOd6uY7u4326Qs6Dvq4/QWNR avgrEqnAKn8=
+
+. IN DNSKEY 257 3 8 AwEAAbvlObwqF/Uzeswl1f1h0XryVs3QlPcfHmDBtJU/hv2d1047cJUw oA2jUVxlc+l9601UMKwWELyS6RwuhIxiu5baiLFdiTvkJudbjGgJcZ5z XyPnDagbov8ouUd/MLUaxC3wHMmDV7+mfpS5byGScsUkkyUSqfOSwjbj AR4WceR7uK25as5YFMZMAjhwXkoJUfz0HHtdhu/Qm5uABnD7J4F5nFSG /QbNmdkxIcHCIc5ED7PoLPU4VakWNEx6v2QADG4Pv43BkzQknpc4Q6V1 U8S5ckhDogXRP4UUECs+fPJVf0LPUO1tR6qAEymgWAibsYJSnxw4sXg2 qsLf15JdWlPwquNv6l1go9nDUJTlAJE4oTsZhitJ+j1kDXRWL3gGuQXr knAZX+nqalWfB95e8snbGvNH11TAJoz8QXnnLAzqrUDIgchCLG+4zr9e 382Uve11IkTLxP/8oC3ZNE0UjWu39ZOddimaiwJccsdVnzOqUsyMTXgz bXMNT8ieO0XHyNodcqDIhU93qM9ZB5WVTgmKxQPfWRDSA/uC946tEwt+ YbDvO55JSp6h0wMaToJxXpBKuYH55OA/UyhzEYuLFsiwcXRaI698J5O2 0ibqmxDmBBgMhxYxTf0yYknYW2yiv86qNABzhxjUlk0EoDpCP+321Xx2 uowJo8Rzm8CRWEUr
+
+a.root-servers.workshop.	IN	A	10.0.1.53
+b.root-servers.workshop.	IN	A	10.0.2.53
+
+a.root-servers.workshop.  IN	AAAA 2002:cafe:babe:b00c:c001:face::53
+b.root-servers.workshop.	IN	AAAA 2002:cafe:babe:face:b00c:1337::53
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+workshop. IN NS	ns1.workshop.
+workshop. IN NS ns2.workshop.
+
+workshop. IN DS 32200 8 1 0EE020BC2F46C5239045926C344FE77C880009EF
+workshop. IN DS 32200 8 2 B4B9527385BA3EBBDC19496854CD1A4D1500891DFD32349EE272106F360A47CF
+
+ns1.workshop.	IN	A	10.0.1.53
+ns2.workshop.	IN	A	10.0.2.53
+

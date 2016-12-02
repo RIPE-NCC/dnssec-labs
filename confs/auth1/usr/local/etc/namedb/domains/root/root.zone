@@ -1,0 +1,29 @@
+$TTL 10
+@	IN	SOA	a.root-servers.workshop. admins.workshop. (
+                        SERIAL      ; serial
+                        30   ; refresh after 6 hours
+                        60    ; retry after 1 hour
+                        604800  ; expire after 1 week
+                        30 ) ; minimum TTL of 1 day
+
+
+.	IN	NS	a.root-servers.workshop.
+.	IN	NS	b.root-servers.workshop.
+
+a.root-servers.workshop.	IN	A	10.0.5.53
+b.root-servers.workshop.	IN	A	10.0.6.53
+
+a.root-servers.workshop.  IN	AAAA 2001:db8::5:53
+b.root-servers.workshop.	IN	AAAA 2001:db8::6:53
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+workshop. IN NS	ns1.workshop.
+workshop. IN NS ns2.workshop.
+
+ns1.workshop.	IN	A	10.0.3.53
+ns2.workshop.	IN	A	10.0.4.53
+
+ns1.workshop.	IN	AAAA 2001:db8::3:53
+ns2.workshop.	IN	AAAA 2001:db8::4:53
+

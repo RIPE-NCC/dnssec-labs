@@ -31,10 +31,9 @@ FreeBSD# pkg install -y unzip
 
 FreeBSD# unzip master.zip
 
-
 ```
 
-then, just run the main script in a tmux terminal
+then, just run the main script in a tmux terminal, after installing it
 
 ```shell
 
@@ -42,7 +41,7 @@ FreeBSD# pkg install -y tmux
 FreeBSD# rehash
 FreeBSD# tmux
 FreeBSD# cd dnssec-labs
-FreeBSD# sh start_labs.sh
+FreeBSD# sh lab_start.sh
 
 ```
 
@@ -143,11 +142,12 @@ This will create all the machines for the participants in the course.
 
 ## Contacts
 
-For any questions or issues, feel free to write to mstucchi@ripe.net
+This work comes from the Training Services Department at the [RIPE NCC](https://www.ripe.net)
+For any questions or issues, feel free to write to mstucchi@ripe.net, or contact the Twitter handle @TrainingRIPENCC.
 
 ## TODO
 
-This is a list of action points for future development of the labs.
+This is a list of action points for future development of the labs:
 
 - Add more record types to the different zones:
 	- TLSA

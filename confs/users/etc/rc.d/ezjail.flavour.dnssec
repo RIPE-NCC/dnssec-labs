@@ -1,0 +1,104 @@
+#!/bin/sh
+#
+# BEFORE: DAEMON
+# PROVIDE: ezjail.example.config
+#
+# ezjail flavour example
+
+. /etc/rc.subr
+
+name=dnssec_users
+start_cmd=flavour_setup
+
+flavour_setup() {
+
+# Remove traces of ourself
+# N.B.: Do NOT rm $0, it points to /etc/rc
+##########################
+
+USER=`hostname | awk 'BEGIN{FS="."} {print($1)}'`
+NUMBER=`hostname | awk 'BEGIN{FS="."} {print($1)}' | awk '{a = substr($0, 5); b = length(a); if (b == 1) {print("0" a);} else {print (a);}}'`
+NUMBER_NORM=`hostname | awk 'BEGIN{FS="."} {print($1)}' | awk '{a = substr($0, 5); print (a);}'`
+
+rm -f "/etc/rc.d/ezjail.flavour.dnssec"
+
+# Groups
+#########
+#
+# You will probably start with some groups your users should be in
+
+# pw groupadd -q -n coders # -g 1004
+# pw groupadd -q -n sales # -g 1005
+
+# Files
+########
+#
+# You can now give files to users just created
+
+# chown -R admin:coders /usr/local/cvsroot
+# chown -R admin:sales /usr/local/nfs/sales
+
+# Packages
+###########
+#
+# Install all packages previously put to /pkg
+# Remove package files afterwards
+
+#env ASSUME_ALWAYS_YES=YES pkg bootstrap
+
+tar xf /pkg/pkg-1.9.3.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.9.3.txz
+rm -rf /pkg/pkg-1.9.3.txz
+
+[ -d /pkg ] && pkg add /pkg/*
+
+rm -fr /pkg
+
+# Users
+########
+#
+# You might want to add some users. The password is to be provided in the
+# encrypted form as found in /etc/master.passwd.
+# The example password here is "admin"
+# Refer to crypt(3) and pw(8) for more information
+
+echo -n "${USER}_secret" |\
+	pw useradd -n ${USER} -u 1001 -s /bin/tcsh -m -d /usr/local/etc/namedb/ -G wheel -c 'Training user' -h 0
+echo -n "root_secret" |\
+	pw usermod -n root -h 0
+
+echo "nameserver 10.0.0.201" > /etc/resolv.conf
+
+sed -i .bak "s/XXX/${NUMBER_NORM}/" /usr/local/etc/namedb/named.conf
+sed -i .bak "s/XX/${NUMBER}/" /usr/local/etc/namedb/named.conf
+sed -i .bak "s/XXX/${NUMBER_NORM}/" /usr/local/etc/namedb/domain.conf
+sed -i .bak "s/XXX/${NUMBER_NORM}/" /usr/local/etc/namedb/domain/domain.conf
+sed -i .bak "s/XXX/${NUMBER_NORM}/" /usr/local/etc/namedb/domain/domain.conf
+sed -i .bak "s/XX/${NUMBER}/" /usr/local/etc/namedb/domain/domain.conf
+sed -i .bak "s/XX/${NUMBER}/" /usr/local/etc/namedb/domain/domain.conf
+
+chown 1001 /usr/local/etc/namedb/domain.conf
+chmod 777 /usr/local/etc/namedb/named.conf
+
+# Postinstall
+##############
+#
+# Your own stuff here, for example set login shells that were only
+# installed just before.
+
+# Please note, that for all network related stuff like ports,
+# package remote fetching, etc. you need a sane /etc/resolv.conf
+
+# chpass -s /usr/local/bin/bash admin
+# pkg_add -r pico
+# cd /usr/ports/sysutils/screen && make install
+
+mv /usr/bind.keys /usr/local/etc/namedb/
+chown bind:bind /usr/local/etc/namedb/bind.keys
+mv /usr/named.root /usr/local/etc/namedb/
+chown bind:bind /usr/local/etc/namedb/named.root
+
+/usr/local/etc/rc.d/named start
+
+}
+
+run_rc_command "$1"

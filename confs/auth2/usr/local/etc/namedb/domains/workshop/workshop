@@ -1,0 +1,134 @@
+$TTL 10
+@	IN	SOA	ns1.workshop. admins.workshop. (
+                        2015010101      ; serial
+                        21600   ; refresh after 6 hours
+                        3600    ; retry after 1 hour
+                        604800  ; expire after 1 week
+                        86400 ) ; minimum TTL of 1 day
+
+@	IN	NS	ns1.workshop.
+
+ns1	IN	A	10.0.1.53
+
+domain01.workshop.	IN	NS	ns1.domain01.workshop.
+domain01.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain02.workshop.	IN	NS	ns1.domain02.workshop.
+domain02.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain03.workshop.	IN	NS	ns1.domain03.workshop.
+domain03.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain04.workshop.	IN	NS	ns1.domain04.workshop.
+domain04.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain05.workshop.	IN	NS	ns1.domain05.workshop.
+domain05.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain06.workshop.	IN	NS	ns1.domain06.workshop.
+domain06.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain07.workshop.	IN	NS	ns1.domain07.workshop.
+domain07.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain08.workshop.	IN	NS	ns1.domain08.workshop.
+domain08.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain09.workshop.	IN	NS	ns1.domain09.workshop.
+domain09.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain10.workshop.	IN	NS	ns1.domain10.workshop.
+domain10.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain11.workshop.	IN	NS	ns1.domain11.workshop.
+domain11.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain12.workshop.	IN	NS	ns1.domain12.workshop.
+domain12.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain13.workshop.	IN	NS	ns1.domain13.workshop.
+domain13.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain14.workshop.	IN	NS	ns1.domain14.workshop.
+domain14.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain15.workshop.	IN	NS	ns1.domain15.workshop.
+domain15.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain16.workshop.	IN	NS	ns1.domain16.workshop.
+domain16.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain17.workshop.	IN	NS	ns1.domain17.workshop.
+domain17.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain18.workshop.	IN	NS	ns1.domain18.workshop.
+domain18.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain19.workshop.	IN	NS	ns1.domain19.workshop.
+domain19.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain20.workshop.	IN	NS	ns1.domain20.workshop.
+domain20.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain21.workshop.	IN	NS	ns1.domain21.workshop.
+domain21.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain22.workshop.	IN	NS	ns1.domain22.workshop.
+domain22.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain23.workshop.	IN	NS	ns1.domain23.workshop.
+domain23.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain24.workshop.	IN	NS	ns1.domain24.workshop.
+domain24.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain25.workshop.	IN	NS	ns1.domain25.workshop.
+domain25.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain26.workshop.	IN	NS	ns1.domain26.workshop.
+domain26.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain27.workshop.	IN	NS	ns1.domain27.workshop.
+domain27.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain28.workshop.	IN	NS	ns1.domain28.workshop.
+domain28.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain29.workshop.	IN	NS	ns1.domain29.workshop.
+domain29.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+domain30.workshop.	IN	NS	ns1.domain30.workshop.
+domain30.workshop.	IN	NS	ns1.secondary-dns.workshop.
+
+ns1.domain01.workshop.		IN	A	172.16.30.1
+ns1.domain02.workshop.		IN	A	172.16.30.2
+ns1.domain03.workshop.		IN	A	172.16.30.3
+ns1.domain04.workshop.		IN	A	172.16.30.4
+ns1.domain05.workshop.		IN	A	172.16.30.5
+ns1.domain06.workshop.		IN	A	172.16.30.6
+ns1.domain07.workshop.		IN	A	172.16.30.7
+ns1.domain08.workshop.		IN	A	172.16.30.8
+ns1.domain09.workshop.		IN	A	172.16.30.9
+ns1.domain10.workshop.		IN	A	172.16.30.10
+ns1.domain11.workshop.		IN	A	172.16.30.11
+ns1.domain12.workshop.		IN	A	172.16.30.12
+ns1.domain13.workshop.		IN	A	172.16.30.13
+ns1.domain14.workshop.		IN	A	172.16.30.14
+ns1.domain15.workshop.		IN	A	172.16.30.15
+ns1.domain16.workshop.		IN	A	172.16.30.16
+ns1.domain17.workshop.		IN	A	172.16.30.17
+ns1.domain18.workshop.		IN	A	172.16.30.18
+ns1.domain19.workshop.		IN	A	172.16.30.19
+ns1.domain20.workshop.		IN	A	172.16.30.20
+ns1.domain21.workshop.		IN	A	172.16.30.21
+ns1.domain22.workshop.		IN	A	172.16.30.22
+ns1.domain23.workshop.		IN	A	172.16.30.23
+ns1.domain24.workshop.		IN	A	172.16.30.24
+ns1.domain25.workshop.		IN	A	172.16.30.25
+ns1.domain26.workshop.		IN	A	172.16.30.26
+ns1.domain27.workshop.		IN	A	172.16.30.27
+ns1.domain28.workshop.		IN	A	172.16.30.28
+ns1.domain29.workshop.		IN	A	172.16.30.29
+ns1.domain30.workshop.		IN	A	172.16.30.30
+
+ns1.secondary-dns.workshop.	IN	A	10.0.2.45

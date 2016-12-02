@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# BEFORE: DAEMON
+# PROVIDE: ezjail.example.config
+#
+# ezjail flavour example
+
+. /etc/rc.subr
+
+name=ezjailSigner
+start_cmd=flavour_setup
+
+flavour_setup() {
+
+# Remove traces of ourself
+# N.B.: Do NOT rm $0, it points to /etc/rc
+##########################
+
+rm -f "/etc/rc.d/ezjail.flavour.signer"
+
+# Groups
+#########
+#
+# You will probably start with some groups your users should be in
+
+# pw groupadd -q -n coders # -g 1004
+# pw groupadd -q -n sales # -g 1005
+
+# Files
+########
+#
+# You can now give files to users just created
+
+# chown -R admin:coders /usr/local/cvsroot
+# chown -R admin:sales /usr/local/nfs/sales
+
+# Packages
+###########
+#
+# Install all packages previously put to /pkg
+# Remove package files afterwards
+
+#env ASSUME_ALWAYS_YES=YES pkg bootstrap
+
+tar xf /pkg/pkg-1.9.3.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.9.3.txz
+rm -rf /pkg/pkg-1.9.3.txz
+
+[ -d /pkg ] && pkg add /pkg/*
+
+rm -fr /pkg
+
+/usr/local/etc/rc.d/php-fpm start
+/usr/local/etc/rc.d/nginx start
+
+}
+
+run_rc_command "$1"

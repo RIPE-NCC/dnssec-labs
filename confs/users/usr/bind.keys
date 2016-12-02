@@ -1,0 +1,25 @@
+/* $Id: bind.keys,v 1.7 2011/01/03 23:45:07 each Exp $ */
+# The bind.keys file is used to override the built-in DNSSEC trust anchors
+# which are included as part of BIND 9.  As of the current release, the only
+# trust anchors it contains are those for the DNS root zone ("."), and for
+# the ISC DNSSEC Lookaside Validation zone ("dlv.isc.org").  Trust anchors
+# for any other zones MUST be configured elsewhere; if they are configured
+# here, they will not be recognized or used by named.
+#
+# The built-in trust anchors are provided for convenience of configuration.
+# They are not activated within named.conf unless specifically switched on.
+# To use the built-in root key, set "dnssec-validation auto;" in
+# named.conf options.  To use the built-in DLV key, set
+# "dnssec-lookaside auto;".  Without these options being set,
+# the keys in this file are ignored.
+#
+# This file is NOT expected to be user-configured.
+#
+# These keys are current as of January 2011.  If any key fails to
+# initialize correctly, it may have expired.  In that event you should
+# replace this file with a current version.  The latest version of
+# bind.keys can always be obtained from ISC at https://www.isc.org/bind-keys.
+
+managed-keys {
+	. initial-key 257 3 8 "AwEAAbvlObwqF/Uzeswl1f1h0XryVs3QlPcfHmDBtJU/hv2d1047cJUw oA2jUVxlc+l9601UMKwWELyS6RwuhIxiu5baiLFdiTvkJudbjGgJcZ5z XyPnDagbov8ouUd/MLUaxC3wHMmDV7+mfpS5byGScsUkkyUSqfOSwjbj AR4WceR7uK25as5YFMZMAjhwXkoJUfz0HHtdhu/Qm5uABnD7J4F5nFSG /QbNmdkxIcHCIc5ED7PoLPU4VakWNEx6v2QADG4Pv43BkzQknpc4Q6V1 U8S5ckhDogXRP4UUECs+fPJVf0LPUO1tR6qAEymgWAibsYJSnxw4sXg2 qsLf15JdWlPwquNv6l1go9nDUJTlAJE4oTsZhitJ+j1kDXRWL3gGuQXr knAZX+nqalWfB95e8snbGvNH11TAJoz8QXnnLAzqrUDIgchCLG+4zr9e 382Uve11IkTLxP/8oC3ZNE0UjWu39ZOddimaiwJccsdVnzOqUsyMTXgz bXMNT8ieO0XHyNodcqDIhU93qM9ZB5WVTgmKxQPfWRDSA/uC946tEwt+ YbDvO55JSp6h0wMaToJxXpBKuYH55OA/UyhzEYuLFsiwcXRaI698J5O2 0ibqmxDmBBgMhxYxTf0yYknYW2yiv86qNABzhxjUlk0EoDpCP+321Xx2 uowJo8Rzm8CRWEUr";
+};

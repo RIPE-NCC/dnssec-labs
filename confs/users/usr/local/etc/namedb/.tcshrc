@@ -1,0 +1,32 @@
+# $FreeBSD: src/etc/root/dot.cshrc,v 1.25.2.2 2001/03/05 13:36:53 asmodai Exp $
+#
+# .cshrc - csh resource script, read at beginning of execution by each shell
+#
+# see also csh(1), environ(7).
+#
+
+# A righteous umask
+umask 22
+
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin /usr/X11R6/bin $HOME/bin)
+
+setenv	EDITOR		vim
+setenv	PAGER		more
+setenv	BLOCKSIZE	K
+setenv	CVSROOT		:pserver:max@cvs.willystudios.com:/www/cvs
+
+alias	scacchi		'xboard -size small -ics -icshost freechess.org'
+alias	scapo		'cmail -size small'
+alias   bakdel		'rm -fr *~'
+alias   agenda		'cat fileprova | grep'
+
+set	autolist
+
+if ($?prompt) then
+	# An interactive shell -- set some stuff up
+	set prompt = "%T %n@%m %/> "
+	set filec
+	set history = 10000
+	set savehist = 100
+	set mail = (/var/mail/$USER)
+endif

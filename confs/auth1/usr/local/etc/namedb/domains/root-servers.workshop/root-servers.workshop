@@ -1,0 +1,19 @@
+$TTL 30
+@       IN      SOA     ns1.secondary-dns.workshop. admins.dns.workshop. (
+                        SERIAL      ; serial
+                        30   ; refresh after 6 hours
+                        30    ; retry after 1 hour
+                        60  ; expire after 1 week
+                       	30 ) ; minimum TTL of 1 day
+
+
+@ IN  NS  a.root-servers.workshop.
+@	IN	NS	b.root-servers.workshop.
+
+a	IN	A	10.0.5.53
+b	IN	A	10.0.6.53
+
+a IN	AAAA 2001:db8::5:53
+b	IN	AAAA 2001:db8::6:53
+
+

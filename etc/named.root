@@ -1,0 +1,13 @@
+
+.	IN	NS	a.root-servers.workshop.
+.	IN	NS	b.root-servers.workshop.
+
+a.root-servers.workshop.	IN	A	10.0.5.53
+b.root-servers.workshop.	IN	A	10.0.6.53
+
+a.root-servers.workshop.  IN	AAAA 2001:db8::5:53
+b.root-servers.workshop.	IN	AAAA 2001:db8::6:53
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+

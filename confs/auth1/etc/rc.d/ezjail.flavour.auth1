@@ -1,0 +1,124 @@
+#!/bin/sh
+#
+# BEFORE: DAEMON
+# PROVIDE: ezjail.example.config
+#
+# ezjail flavour example
+
+. /etc/rc.subr
+
+name="ezjailAuth1"
+start_cmd=flavour_setup
+
+flavour_setup() {
+
+# Remove traces of ourself
+# N.B.: Do NOT rm $0, it points to /etc/rc
+##########################
+
+USER=`hostname | awk 'BEGIN{FS="."} {print($1)}'`
+NUMBER=`hostname | awk 'BEGIN{FS="."} {print($1)}' | awk '{a = substr($0, 5); b = length(a); if (b == 1) {print("0" a);} else {print (a);}}'`
+NUMBER_NORM=`hostname | awk 'BEGIN{FS="."} {print($1)}' | awk '{a = substr($0, 5); print (a);}'`
+SERIAL=`date +%Y%m%d`00
+
+rm -f "/etc/rc.d/ezjail.flavour.auth1"
+
+#env ASSUME_ALWAYS_YES=YES pkg bootstrap
+
+tar xf /pkg/pkg-1.9.3.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.9.3.txz
+rm -rf /pkg/pkg-1.9.3.txz
+
+[ -d /pkg ] && pkg add /pkg/*
+
+rm -fr /pkg
+
+# Users
+########
+#
+# You might want to add some users. The password is to be provided in the
+# encrypted form as found in /etc/master.passwd.
+# The example password here is "admin"
+# Refer to crypt(3) and pw(8) for more information
+
+#echo -n "${USER}_secret" |\
+#	pw useradd -n ${USER} -u 1001 -s /bin/tcsh -m -d /usr/local/etc/namedb/ -G wheel -c 'Training user' -h 0
+#echo -n "root_secret" |\
+#	pw usermod -n root -h 0
+
+echo "nameserver 10.0.0.201" > /etc/resolv.conf
+
+# Create Keys for the root zone.
+# This might/should be replaced by a cycle, but at least at the beginning, I want to put down everything that should be done
+
+
+/usr/local/sbin/dnssec-keygen -L 20 -q -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/root/ -n zone .
+
+/usr/local/sbin/dnssec-keygen -L 20 -q -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/root/ -n zone .
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/root/root.zone
+
+# Generate keys for .workshop, both KSK and ZSK.  Also generate the DS records and put them in root zone.
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/workshop/ -n zone workshop | awk '$0 ~ /^K./ {system("/usr/local/sbin/dnssec-dsfromkey /usr/local/etc/namedb/domains/workshop/" $0); }' >> /usr/local/etc/namedb/domains/root/root.zone
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/workshop/ -n zone workshop
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/workshop/workshop
+
+# Generate keys for nic.workshop, both KSK and ZSK.  Also generate the DS records and put them in root zone.
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/nic.workshop/ -n zone nic.workshop | awk '$0 ~ /^K./ {system("/usr/local/sbin/dnssec-dsfromkey /usr/local/etc/namedb/domains/nic.workshop/" $0); }' >> /usr/local/etc/namedb/domains/workshop/workshop
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/nic.workshop/ -n zone nic.workshop
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/nic.workshop/nic.workshop
+
+# Generate keys for secondary-dns.workshop, both KSK and ZSK.  Also generate the DS records and put them in root zone.
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/secondary-dns.workshop/ -n zone secondary-dns.workshop | awk '$0 ~ /^K./ {system("/usr/local/sbin/dnssec-dsfromkey /usr/local/etc/namedb/domains/secondary-dns.workshop/" $0); }' >> /usr/local/etc/namedb/domains/workshop/workshop
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/secondary-dns.workshop/ -n zone secondary-dns.workshop
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/secondary-dns.workshop/secondary-dns.workshop
+
+# Generate keys for dns.workshop, both KSK and ZSK.  Also generate the DS records and put them in root zone.
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/dns.workshop/ -n zone dns.workshop | awk '$0 ~ /^K./ {system("/usr/local/sbin/dnssec-dsfromkey /usr/local/etc/namedb/domains/dns.workshop/" $0); }' >> /usr/local/etc/namedb/domains/workshop/workshop
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/dns.workshop/ -n zone dns.workshop
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/dns.workshop/dns.workshop
+
+# Generate keys for root-servers.workshop, both KSK and ZSK.  Also generate the DS records and put them in root zone.
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/root-servers.workshop/ -n zone root-servers.workshop | awk '$0 ~ /^K./ {system("/usr/local/sbin/dnssec-dsfromkey /usr/local/etc/namedb/domains/root-servers.workshop/" $0); }' >> /usr/local/etc/namedb/domains/workshop/workshop
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/root-servers.workshop/ -n zone root-servers.workshop
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/root-servers.workshop/root-servers.workshop
+
+# Generate keys for mail.workshop, both KSK and ZSK.  Also generate the DS records and put them in root zone.
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/mail.workshop/ -n zone mail.workshop | awk '$0 ~ /^K./ {system("/usr/local/sbin/dnssec-dsfromkey /usr/local/etc/namedb/domains/mail.workshop/" $0); }' >> /usr/local/etc/namedb/domains/workshop/workshop
+
+/usr/local/sbin/dnssec-keygen -q -L 20 -a RSASHA256 -b 4096 -K /usr/local/etc/namedb/domains/mail.workshop/ -n zone mail.workshop
+
+sed -i .bak "s/SERIAL/${SERIAL}/" /usr/local/etc/namedb/domains/mail.workshop/mail.workshop
+
+# Fix permissions/ownership
+
+chown -R bind:bind /usr/local/etc/namedb/domains
+
+###############
+# Postinstall #
+###############
+#
+
+### Start bind
+
+/usr/local/etc/rc.d/named start
+
+}
+
+run_rc_command "$1"
+

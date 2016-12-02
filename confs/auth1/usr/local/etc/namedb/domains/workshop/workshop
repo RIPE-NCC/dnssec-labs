@@ -1,0 +1,224 @@
+$TTL 10	; 10 seconds
+@		IN SOA	ns1.workshop. admins.workshop. (
+				SERIAL ; serial
+				30         ; refresh (30 seconds)
+				30         ; retry (30 seconds)
+				500        ; expire (8 minutes 20 seconds)
+				30         ; minimum (30 seconds)
+				)
+@		IN	NS	ns1.workshop.
+@		IN	NS	ns2.workshop.
+
+ns1	IN	A	10.0.3.53
+ns2	IN	A	10.0.4.53
+
+ns1	IN	AAAA 2001:db8::3:53
+ns2	IN	AAAA 2001:db8::4:53
+
+; Broken-dnssec
+
+broken-dnssec	IN	NS	ns1.dns
+broken-dnssec	IN	NS	ns2.dns
+
+broken-dnssec	IN	DS  27469 8 1 E003C3277A074352AB9B288729E6A8A58A834F84
+broken-dnssec	IN	DS  27469 8 2 2A9A11B568751F0C40AA976E52C1269F73BEFAA5F406FC337E1B61C430347860
+
+; dns.workshop
+
+dns	IN	NS	ns1.secondary-dns
+dns	IN	NS	ns2.secondary-dns
+
+; mail.workshop
+
+mail	IN	NS	ns1.secondary-dns
+mail	IN	NS	ns2.secondary-dns
+
+; nic.workshop
+
+nic	IN	NS	ns1.secondary-dns
+nic	IN	NS	ns2.secondary-dns
+
+; root-servers.workshop
+
+root-servers	IN	NS	a.root-servers.workshop.	
+root-servers	IN	NS	b.root-servers.workshop.
+
+a.root-servers	IN	A	10.0.1.53
+b.root-servers	IN	A	10.0.2.53
+
+a.root-servers	IN	AAAA	2001:db8::1:53
+b.root-servers	IN	AAAA	2001:db8::2:53
+
+; secondary-dns.workshop
+
+secondary-dns			IN	NS	ns1.secondary-dns
+secondary-dns			IN	NS	ns2.secondary-dns
+
+ns1.secondary-dns	IN	A	10.0.1.53
+ns2.secondary-dns	IN	A	10.0.2.53
+
+ns1.secondary-dns	IN	AAAA 2001:db8::1:53
+ns2.secondary-dns	IN	AAAA 2001:db8::2:53
+
+; sync.workshop
+
+sync		IN	NS	ns1.secondary-dns
+sync		IN	NS	ns2.secondary-dns
+
+;;;
+;;; All user domains
+;;;
+
+domain1				IN	NS	ns1.domain1
+domain1				IN	NS	ns2.secondary-dns
+ns1.domain1		IN	A		172.16.30.1
+ns1.domain1		IN	AAAA 2001:db8:1::53
+
+domain2				IN	NS	ns1.domain2
+domain2				IN	NS	ns2.secondary-dns
+ns1.domain2		IN	A		172.16.30.2
+ns1.domain2		IN	AAAA 2001:db8:2::53
+
+domain3				IN	NS	ns1.domain3
+domain3				IN	NS	ns2.secondary-dns
+ns1.domain3		IN	A		172.16.30.3
+ns1.domain3		IN	AAAA 2001:db8:3::53
+
+domain4				IN	NS	ns1.domain4
+domain4				IN	NS	ns2.secondary-dns
+ns1.domain4		IN	A		172.16.30.4
+ns1.domain4		IN	AAAA 2001:db8:4::53
+
+domain5				IN	NS	ns1.domain5
+domain5 			IN	NS	ns2.secondary-dns
+ns1.domain5		IN	A		172.16.30.5
+ns1.domain5		IN	AAAA 2001:db8:5::53
+
+domain6				IN	NS	ns1.domain6
+domain6				IN	NS	ns2.secondary-dns
+ns1.domain6		IN	A		172.16.30.6
+ns1.domain6		IN	AAAA 2001:db8:6::53
+
+domain7				IN	NS	ns1.domain7
+domain7				IN	NS	ns2.secondary-dns
+ns1.domain7		IN	A		172.16.30.7
+ns1.domain7		IN	AAAA 2001:db8:7::53
+
+domain8				IN	NS	ns1.domain8
+domain8				IN	NS	ns2.secondary-dns
+ns1.domain8		IN	A		172.16.30.8
+ns1.domain8		IN	AAAA 2001:db8:8::53
+
+domain9				IN	NS	ns1.domain9
+domain9				IN	NS	ns2.secondary-dns
+ns1.domain9		IN	A		172.16.30.9
+ns1.domain9		IN	AAAA 2001:db8:9::53
+
+domain10			IN	NS	ns1.domain10
+domain10			IN	NS	ns2.secondary-dns
+ns1.domain10	IN	A		172.16.30.10
+ns1.domain10	IN	AAAA 2001:db8:10::53
+
+domain11			IN	NS	ns1.domain11
+domain11			IN	NS	ns2.secondary-dns
+ns1.domain11	IN	A		172.16.30.11
+ns1.domain11	IN	AAAA 2001:db8:11::53
+
+domain12			IN	NS	ns1.domain12
+domain12			IN	NS	ns2.secondary-dns
+ns1.domain12	IN	A		172.16.30.12
+ns1.domain12	IN	AAAA 2001:db8:12::53
+
+domain13			IN	NS	ns1.domain13
+domain13			IN	NS	ns2.secondary-dns
+ns1.domain13	IN	A		172.16.30.13
+ns1.domain13	IN	AAAA 2001:db8:13::53
+
+domain14			IN	NS	ns1.domain14
+domain14			IN	NS	ns2.secondary-dns
+ns1.domain14	IN	A		172.16.30.14
+ns1.domain14	IN	AAAA 2001:db8:14::53
+
+domain15			IN	NS	ns1.domain15
+domain15			IN	NS	ns2.secondary-dns
+ns1.domain15	IN	A		172.16.30.15
+ns1.domain15	IN	AAAA 2001:db8:15::53
+
+domain16			IN	NS	ns1.domain16
+domain16			IN	NS	ns2.secondary-dns
+ns1.domain16	IN	A		172.16.30.16
+ns1.domain16	IN	AAAA 2001:db8:16::53
+
+domain17			IN	NS	ns1.domain17
+domain17			IN	NS	ns2.secondary-dns
+ns1.domain17	IN	A		172.16.30.17
+ns1.domain17	IN	AAAA 2001:db8:17::53
+
+domain18			IN	NS	ns1.domain18
+domain18			IN	NS	ns2.secondary-dns
+ns1.domain18	IN	A		172.16.30.18
+ns1.domain18	IN	AAAA 2001:db8:18::53
+
+domain19			IN	NS	ns1.domain19
+domain19			IN	NS	ns2.secondary-dns
+ns1.domain19	IN	A		172.16.30.19
+ns1.domain19	IN	AAAA 2001:db8:19::53
+
+domain20			IN	NS	ns1.domain20
+domain20			IN	NS	ns2.secondary-dns
+ns1.domain20	IN	A		172.16.30.20
+ns1.domain20	IN	AAAA 2001:db8:20::53
+
+domain21			IN	NS	ns1.domain21
+domain21			IN	NS	ns2.secondary-dns
+ns1.domain21	IN	A		172.16.30.21
+ns1.domain21	IN	AAAA 2001:db8:21::53
+
+domain22			IN	NS	ns1.domain22
+domain22			IN	NS	ns2.secondary-dns
+ns1.domain22	IN	A		172.16.30.22
+ns1.domain22	IN	AAAA 2001:db8:22::53
+
+domain23			IN	NS	ns1.domain23
+domain23			IN	NS	ns2.secondary-dns
+ns1.domain23	IN	A		172.16.30.23
+ns1.domain23	IN	AAAA 2001:db8:23::53
+
+domain24			IN	NS	ns1.domain24
+domain24			IN	NS	ns2.secondary-dns
+ns1.domain24	IN	A		172.16.30.24
+ns1.domain24		IN	AAAA 2001:db8:24::53
+
+domain25			IN	NS	ns1.domain25
+domain25			IN	NS	ns2.secondary-dns
+ns1.domain25	IN	A		172.16.30.25
+ns1.domain25	IN	AAAA 2001:db8:25::53
+
+domain26			IN	NS	ns1.domain26
+domain26			IN	NS	ns2.secondary-dns
+ns1.domain26	IN	A		172.16.30.26
+ns1.domain26	IN	AAAA 2001:db8:26::53
+
+domain27			IN	NS	ns1.domain27
+domain27			IN	NS	ns2.secondary-dns
+ns1.domain27	IN	A		172.16.30.27
+ns1.domain27	IN	AAAA 2001:db8:27::53
+
+domain28			IN	NS	ns1.domain28
+domain28			IN	NS	ns2.secondary-dns
+ns1.domain28	IN	A		172.16.30.28
+ns1.domain28	IN	AAAA 2001:db8:28::53
+
+domain29			IN	NS	ns1.domain29
+domain29			IN	NS	ns2.secondary-dns
+ns1.domain29	IN	A		172.16.30.29
+ns1.domain29	IN	AAAA 2001:db8:29::53
+
+domain30			IN	NS	ns1.domain30
+domain30			IN	NS	ns2.secondary-dns
+ns1.domain30	IN	A		172.16.30.30
+ns1.domain30	IN	AAAA 2001:db8:30::53
+
+;;; All DS records will be created after this
+
+
