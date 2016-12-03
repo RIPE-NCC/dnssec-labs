@@ -20,8 +20,8 @@ Once you log in to the FreeBSD system as root, just fetch the latest master vers
 
 ```shell
 
-FreeBSD# pkg install -y ca_root_nss
-FreeBSD# fetch https://github.com/RIPE-NCC/dnssec-labs/archive/master.zip
+pkg install -y ca_root_nss
+fetch https://github.com/RIPE-NCC/dnssec-labs/archive/master.zip
 
 ```
 
@@ -29,9 +29,9 @@ then you need to install unzip to unpack it
 
 ```shell
 
-FreeBSD# pkg install -y unzip
+pkg install -y unzip
 
-FreeBSD# unzip master.zip
+unzip master.zip
 
 ```
 
@@ -39,10 +39,10 @@ then, just run the main script in a tmux terminal, after installing it
 
 ```shell
 
-FreeBSD# pkg install -y tmux
-FreeBSD# tmux
-FreeBSD# cd dnssec-labs-master
-FreeBSD# sh lab_start.sh
+pkg install -y tmux
+tmux
+cd dnssec-labs-master
+sh lab_start.sh
 
 ```
 
