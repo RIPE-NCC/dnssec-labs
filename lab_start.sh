@@ -11,7 +11,7 @@ sleep 5
 
 ROOT=`pwd`
 
-portsnap fetch extract
+/usr/sbin/portsnap fetch extract
 
 WITHOUT_X11=yes
 
@@ -61,7 +61,7 @@ echo ""
 
 echo 'ezjail_enable="YES"' >> /etc/rc.conf
 
-ezjail-admin install
+/usr/local/bin/ezjail-admin install
 
 echo ""
 echo "################################"
@@ -121,7 +121,7 @@ echo ""
 
 /usr/local/bin/ezjail-admin start auth1
 
-KEY=`grep -l "key-signing" /usr/jails/auth1/usr/local/etc/namedb/domains/root/K*`
+KEY=`/usr/bin/grep -l "key-signing" /usr/jails/auth1/usr/local/etc/namedb/domains/root/K*`
 
 echo ""
 echo "###############################"
@@ -130,9 +130,9 @@ echo "###############################"
 echo ""
 
 echo "managed-keys { " > bind.keys && \
-	tail -n+5 ${KEY} | \
-	sed "s/20 IN DNSKEY/initial-key/" | \
-	sed "s/3 8/3 8 \"/" >> bind.keys && \
+	/usr/bin/tail -n+5 ${KEY} | \
+	/usr/bin/sed "s/20 IN DNSKEY/initial-key/" | \
+	/usr/bin/sed "s/3 8/3 8 \"/" >> bind.keys && \
 	echo "\";};" >> bind.keys
 
 for i in users resolver auth2; do
