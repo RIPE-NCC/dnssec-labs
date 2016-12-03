@@ -16,10 +16,11 @@ The labs are meant to be setup using FreeBSD, and are based on EZJail and tmux.
 
 The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Recommended providers are [Vultr](http://vultr.com), [DigitalOcean](http://www.digitalocean.com) or [CloudAtCost](http://www.cloudatcost.com), but any other provider can do.
 
-Once you log in to the FreeBSD system as root, just fetch the latest master version of the labs:
+Once you log in to the FreeBSD system as root, just fetch the latest master version of the labs.  On many base installs, this requires the installation of a port to enable certificate validation first:
 
 ```shell
 
+FreeBSD# pkg install -y ca_root_nss
 FreeBSD# fetch https://github.com/RIPE-NCC/dnssec-labs/archive/master.zip
 
 ```
@@ -39,9 +40,8 @@ then, just run the main script in a tmux terminal, after installing it
 ```shell
 
 FreeBSD# pkg install -y tmux
-FreeBSD# rehash
 FreeBSD# tmux
-FreeBSD# cd dnssec-labs
+FreeBSD# cd dnssec-labs-master
 FreeBSD# sh lab_start.sh
 
 ```
@@ -81,7 +81,7 @@ The workshop zone is dynamic, because it needs to receive updates from the signe
 
 Every domain has DNSSEC enabled, and an RC script running at startup on Auth1 ensures that every key is generated, and the DS records are created accordingly for all of them.  This means that every time you run the script to create the labs, the keys will be different.
 
-Additionally, there are 30 subdomains for the participants in the training course, called domain$x.workshop.  These domains are set with nameservers the client machine for the user and ns1.secondary-dns.workshop
+Additionally, there are 30 subdomains for the participants in the training course, called _domain$x.workshop._  These domains are configured with two nameservers: the client machine for the user and ns1.secondary-dns.workshop.
 
 
 ### Servers
