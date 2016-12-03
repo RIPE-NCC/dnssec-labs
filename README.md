@@ -3,17 +3,18 @@
 
 ## Introduction
 
-This repository holds the scripts that generate the labs used in the DNSSEC Training course from the RIPE NCC Training Services department.
+This repository holds the scripts that generate the labs used in the DNSSEC Training course from the [RIPE NCC Training Services department](https://www.ripe.net/training/).
 
 There are exercises based on this lab.  You can find them at this link.
 
 The reason to provide these scripts is to help in DNSSEC deployment.  They can be used to replicate the exercises from the training course, or to run a test lab for DNSSEC deployment.  The initial reason to develop them was, in fact, solely to support the DNSSEC training course with exercises for all the participants.  Later on it was decided to make the platform freely available to everybody in an attempt to increase DNSSEC adoption by means of a wider knowledge on the subject.
 
+
 ## Setup
 
 The labs are meant to be setup using FreeBSD, and are based on EZJail and tmux.
 
-The first step is to have a FreeBSD 11 system without any package installed - a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  There is no difference.
+The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Recommended providers are [Vultr](http://vultr.com), [DigitalOcean](http://www.digitalocean.com) or [CloudAtCost](http://www.cloudatcost.com), but any other provider can do.
 
 Once you log in to the FreeBSD system as root, just fetch the latest master version of the labs:
 
@@ -57,9 +58,11 @@ When the jails are started, all the required keys for all the domains are create
 
 At the end of the process, the script starts a tmux session with a window for each one of the servers.  You can then check that everything is running.  You can refer to the tmux documentation on how to switch between windows.
 
+
 ## Description of the environment
 
-The labs use a jail for every single server, with IPv4 and IPv6 addresses assigned to the loopback (lo0) interface.  This is to make the system self-contained and not accessible from the outside, unless ports are forwarded using PF.
+The labs use a jail for every single server, with IPv4 and IPv6 addresses assigned to the loopback (_lo0_) interface.  This is to make the system self-contained and not accessible from the outside, unless ports are forwarded using PF.
+
 
 ### Domains
 
@@ -80,9 +83,11 @@ Every domain has DNSSEC enabled, and an RC script running at startup on Auth1 en
 
 Additionally, there are 30 subdomains for the participants in the training course, called domain$x.workshop.  These domains are set with nameservers the client machine for the user and ns1.secondary-dns.workshop
 
+
 ### Servers
 
 There are four servers running: Auth1, Auth2, resolver and signer
+
 
 #### Auth1
 
@@ -92,11 +97,11 @@ You can find the Bind configuration files at _/usr/local/etc/namedb/_ and all th
 
 The Bind configuration is split into views, in order to emulate the different levels of servers:
 
-- View "root", answering on 10.0.5.53 and 2001:db8::5:53;
+- View "root", answering on *10.0.5.53* and *2001:db8::5:53*;
 	- This view serves the . (dot, root) zone;
-- View "tld", answering on 10.0.3.53 and 2001:db8::3:53;
+- View "tld", answering on *10.0.3.53* and *2001:db8::3:53*;
 	- This view serves the workshop. zone;
-- View "domains", answering on 10.0.1.53 and 2001:db8::1:5;
+- View "domains", answering on *10.0.1.53* and *2001:db8::1:5*;
 	- This view serves all the subdomains of the workshop zone;
 
 
@@ -108,11 +113,11 @@ Auth2 runs Bind 9.11 at the moment.
 
 The Bind configuration is split into views, in order to emulate the different levels of servers:
 
-- View "root", answering on 10.0.6.53 and 2001:db8::6:53;
+- View "root", answering on *10.0.6.53* and *2001:db8::6:53*;
 	- This view serves the . (dot, root) zone;
-- View "tld", answering on 10.0.4.53 and 2001:db8::4:53;
+- View "tld", answering on *10.0.4.53* and *2001:db8::4:53*;
 	- This view serves the workshop. zone;
-- View "domains", answering on 10.0.2.53 and 2001:db8::2:5;
+- View "domains", answering on *10.0.2.53* and *2001:db8::2:5*;
 	- This view serves all the subdomains of the workshop zone;
 
 
@@ -134,7 +139,7 @@ You can start the clients running the dedicated script:
 
 ```
 
-FreeBSD# sh start_clients.sh
+FreeBSD# sh clients_start.sh
 
 ```
 
@@ -143,7 +148,7 @@ This will create all the machines for the participants in the course.
 ## Contacts
 
 This work comes from the Training Services Department at the [RIPE NCC](https://www.ripe.net)
-For any questions or issues, feel free to write to mstucchi@ripe.net, or contact the Twitter handle @TrainingRIPENCC.
+For any questions or issues, feel free to write to mstucchi@ripe.net, or contact the Twitter handle [@TrainingRIPENCC](https://www.twitter.com/TrainingRIPENCC).
 
 ## TODO
 
@@ -155,3 +160,5 @@ This is a list of action points for future development of the labs:
 	- SSHFP
 - Distribute servers over different types (NSD, Knot)
 - Install DNSViz
+
+
