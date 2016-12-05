@@ -15,11 +15,11 @@ ROOT=`pwd`
 
 WITHOUT_X11=yes
 
-PACKAGES=${ROOT}/packages/dns
+PACKAGES=${ROOT}/packages
 
 for i in ports-mgmt/pkg dns/bind911 dns/ldns editors/nano editors/vim-lite security/sudo;
 do
-	cd /usr/ports/${i} && make package-recursive WITHOUT="X11" BATCH=yes PACKAGES=${ROOT}/packages/dns
+	cd /usr/ports/${i} && make package-recursive WITHOUT="X11" BATCH=yes PACKAGES=${ROOT}/packages
 done
 
 cd ${ROOT}
@@ -30,11 +30,9 @@ for i in auth1 auth2 resolver users; do
 
 done;
 
-PACKAGES=${ROOT}/packages/signer
-
-for i in ports-mgmt/pkg www/nginx lang/php56 lang/php56-extensions dns/bind911 editors/vim-lite;
+for i in www/nginx lang/php56 lang/php56-extensions;
 do
-	cd /usr/ports/${i} && make package-recursive WITHOUT="X11" BATCH=yes PACKAGES=${ROOT}/packages/signer
+	cd /usr/ports/${i} && make package-recursive WITHOUT="X11" BATCH=yes PACKAGES=${ROOT}/packages
 done;
 
 cd ${ROOT}
