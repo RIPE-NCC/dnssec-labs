@@ -5,16 +5,18 @@
 
 This repository holds the scripts that generate the labs used in the DNSSEC Training course from the [RIPE NCC Training Services department](https://www.ripe.net/training/).
 
-There are exercises based on this lab.  You can find them at this [link](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises), and the solutions [here](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises-solutions).
+There are exercises based on this lab:
+	- You can download the [PDF of the exercise booklet](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises), and 
+	- The [PDF of the exercise solutions](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises-solutions).
 
-The reason to provide these scripts is to help in DNSSEC deployment.  They can be used to replicate the exercises from the training course, or to run a test lab for DNSSEC deployment.  The initial reason to develop them was, in fact, solely to support the DNSSEC training course with exercises for all the participants.  Later on it was decided to make the platform freely available to everybody in an attempt to increase DNSSEC adoption by means of a wider knowledge on the subject.
+The reason to provide these scripts is to help foster DNSSEC deployment.  They can be used to replicate the exercises from the training course, or to run a test lab for DNSSEC deployment.  The initial reason to develop them was, in fact, solely to support the DNSSEC training course with exercises for all the participants.  Later on it was decided to make the platform freely available to everybody in an attempt to increase DNSSEC adoption by means of a wider knowledge on the subject.
 
 
 ## Setup
 
 The labs are meant to be setup using FreeBSD, and are based on [EZJail](http://erdgeist.org/arts/software/ezjail/) and [tmux](https://tmux.github.io/).
 
-The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Any other provider can do.
+The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, run in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Any other provider can do.
 
 Once you log in to the FreeBSD system as root, fetch the latest master version of the labs.  On many base installs, this requires the installation of a port to enable certificate validation first, and should be performed this way:
 
