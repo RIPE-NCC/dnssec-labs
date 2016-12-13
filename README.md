@@ -12,7 +12,7 @@ The reason to provide these scripts is to help in DNSSEC deployment.  They can b
 
 ## Setup
 
-The labs are meant to be setup using FreeBSD, and are based on EZJail and tmux.
+The labs are meant to be setup using FreeBSD, and are based on [EZJail](http://erdgeist.org/arts/software/ezjail/) and [tmux](https://tmux.github.io/).
 
 The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Recommended providers are [Vultr](http://vultr.com), [DigitalOcean](http://www.digitalocean.com) or [CloudAtCost](http://www.cloudatcost.com), but any other provider can do.
 
