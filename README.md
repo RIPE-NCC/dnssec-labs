@@ -6,8 +6,8 @@
 This repository holds the scripts that generate the labs used in the DNSSEC Training course from the [RIPE NCC Training Services department](https://www.ripe.net/training/).
 
 There are exercises based on this lab:
-	- You can download the [PDF of the exercise booklet](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises), and 
-	- The [PDF of the exercise solutions](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises-solutions).
+ - You can download the [PDF of the exercise booklet](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises), and 
+ - The [PDF of the exercise solutions](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises-solutions).
 
 The reason to provide these scripts is to help foster DNSSEC deployment.  They can be used to replicate the exercises from the training course, or to run a test lab for DNSSEC deployment.  The initial reason to develop them was, in fact, solely to support the DNSSEC training course with exercises for all the participants.  Later on it was decided to make the platform freely available to everybody in an attempt to increase DNSSEC adoption by means of a wider knowledge on the subject.
 
