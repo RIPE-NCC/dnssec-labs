@@ -5,7 +5,7 @@
 
 This repository holds the scripts that generate the labs used in the DNSSEC Training course from the [RIPE NCC Training Services department](https://www.ripe.net/training/).
 
-There are exercises based on this lab.  You can find them at this link.
+There are exercises based on this lab.  You can find them at this [link](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises), and the solutions [here](https://www.ripe.net/support/training/material/dnssec-training-course/dnssec-training-exercises-solutions).
 
 The reason to provide these scripts is to help in DNSSEC deployment.  They can be used to replicate the exercises from the training course, or to run a test lab for DNSSEC deployment.  The initial reason to develop them was, in fact, solely to support the DNSSEC training course with exercises for all the participants.  Later on it was decided to make the platform freely available to everybody in an attempt to increase DNSSEC adoption by means of a wider knowledge on the subject.
 
@@ -14,9 +14,9 @@ The reason to provide these scripts is to help in DNSSEC deployment.  They can b
 
 The labs are meant to be setup using FreeBSD, and are based on [EZJail](http://erdgeist.org/arts/software/ezjail/) and [tmux](https://tmux.github.io/).
 
-The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Recommended providers are [Vultr](http://vultr.com), [DigitalOcean](http://www.digitalocean.com) or [CloudAtCost](http://www.cloudatcost.com), but any other provider can do.
+The first step is to have a FreeBSD system without any package installed - also called a vanilla installation - which can be on real hardware, ran in virtualbox or any other virtualisation environment that supports FreeBSD as a guest, or a VPS running on some provider's infrastructure.  Any other provider can do.
 
-Once you log in to the FreeBSD system as root, just fetch the latest master version of the labs.  On many base installs, this requires the installation of a port to enable certificate validation first:
+Once you log in to the FreeBSD system as root, fetch the latest master version of the labs.  On many base installs, this requires the installation of a port to enable certificate validation first, and should be performed this way:
 
 ```shell
 
@@ -30,7 +30,6 @@ then you need to install unzip to unpack it
 ```shell
 
 pkg install -y unzip
-
 unzip master.zip
 
 ```
@@ -54,7 +53,7 @@ The script will:
 - setup PF, the packet filter, to redirect some of the traffic to the lab (for the web interface and SSH connections to the specific servers)
 - create all the jails and start them
 
-When the jails are started, all the required keys for all the domains are created, starting from . (dot, root), and including all the subdomains.
+When the jails are started, all the required keys for all the domains are created, starting from "." (dot, root), and including all the subdomains.
 
 At the end of the process, the script starts a tmux session with a window for each one of the servers.  You can then check that everything is running.  You can refer to the tmux documentation on how to switch between windows.
 
@@ -95,10 +94,10 @@ This is the main server.  It runs bind 9.11 at the moment, and is authoritative 
 
 You can find the Bind configuration files at _/usr/local/etc/namedb/_ and all the domain configuration files (including the keys) in the _domains_ subdirectory.
 
-The Bind configuration is split into views, in order to emulate the different levels of servers:
+The Bind configuration is split into views (more info [here](https://kb.isc.org/article/AA-00851/0/Understanding-views-in-BIND-9-by-example.html), in order to emulate the different levels of servers:
 
 - View "root", answering on *10.0.5.53* and *2001:db8::5:53*;
-	- This view serves the . (dot, root) zone;
+	- This view serves the "." (dot, root) zone;
 - View "tld", answering on *10.0.3.53* and *2001:db8::3:53*;
 	- This view serves the workshop. zone;
 - View "domains", answering on *10.0.1.53* and *2001:db8::1:5*;
