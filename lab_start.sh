@@ -30,6 +30,9 @@ for i in auth1 auth2 resolver users; do
 
 done;
 
+## Now build the packages specific to the signer jail.
+## We need a web server and PHP to manage the DS update process.
+
 for i in www/nginx lang/php56 lang/php56-extensions;
 do
 	cd /usr/ports/${i} && make package-recursive WITHOUT="X11" BATCH=yes PACKAGES=${ROOT}/packages

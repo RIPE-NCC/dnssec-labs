@@ -46,8 +46,8 @@ rm -f "/etc/rc.d/ezjail.flavour.dnssec"
 
 #env ASSUME_ALWAYS_YES=YES pkg bootstrap
 
-tar xf /pkg/pkg-1.9.3.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.9.3.txz
-rm -rf /pkg/pkg-1.9.3.txz
+tar xf /pkg/pkg-1.10.1.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.10.1.txz
+rm -rf /pkg/pkg-1.10.1.txz
 
 [ -d /pkg ] && pkg add /pkg/*
 

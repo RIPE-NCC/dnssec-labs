@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# BEFORE: DAEMON
+# REQUIRE: LOGIN FILESYSTEMS
 # PROVIDE: ezjail.example.config
 #
 # ezjail flavour example
@@ -23,10 +23,10 @@ SERIAL=`date +%Y%m%d`00
 
 rm -f "/etc/rc.d/ezjail.flavour.auth1"
 
-#env ASSUME_ALWAYS_YES=YES pkg bootstrap
+# /usr/bin/env ASSUME_ALWAYS_YES=YES pkg bootstrap
 
-tar xf /pkg/pkg-1.9.3.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.9.3.txz
-rm -rf /pkg/pkg-1.9.3.txz
+tar xf /pkg/pkg-1.10.1.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.10.1.txz
+rm -rf /pkg/pkg-1.10.1.txz
 
 [ -d /pkg ] && pkg add /pkg/*
 
@@ -49,7 +49,6 @@ echo "nameserver 10.0.0.201" > /etc/resolv.conf
 
 # Create Keys for the root zone.
 # This might/should be replaced by a cycle, but at least at the beginning, I want to put down everything that should be done
-
 
 /usr/local/sbin/dnssec-keygen -L 20 -q -a RSASHA256 -b 4096 -f KSK -K /usr/local/etc/namedb/domains/root/ -n zone .
 
