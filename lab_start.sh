@@ -183,4 +183,5 @@ echo ""
 /usr/local/bin/tmux new-window -t :2 -n "auth2" 'ezjail-admin console auth2'
 /usr/local/bin/tmux new-window -t :3 -n "resolver" 'ezjail-admin console resolver'
 /usr/local/bin/tmux new-window -t :4 -n "signer" 'ezjail-admin console signer'
+/usr/local/bin/tmux new-window -t :5 -n "clients" 'sh clients_start.sh'
 
