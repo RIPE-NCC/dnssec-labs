@@ -25,8 +25,8 @@ rm -f "/etc/rc.d/ezjail.flavour.auth1"
 
 # /usr/bin/env ASSUME_ALWAYS_YES=YES pkg bootstrap
 
-tar xf /pkg/pkg-1.10.1.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.10.1.txz
-rm -rf /pkg/pkg-1.10.1.txz
+tar xf /pkg/pkg-1.10.5_3.txz -s ",/.*/,,g" "*/pkg-static" && ./pkg-static add /pkg/pkg-1.10.5_3.txz
+rm -rf /pkg/pkg-1.10.5_3.txz
 
 [ -d /pkg ] && pkg add /pkg/*
 
