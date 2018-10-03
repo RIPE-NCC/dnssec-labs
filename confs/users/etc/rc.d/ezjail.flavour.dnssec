@@ -76,8 +76,9 @@ sed -i .bak "s/XXX/${NUMBER_NORM}/" /usr/local/etc/namedb/domain/domain.conf
 sed -i .bak "s/XX/${NUMBER}/" /usr/local/etc/namedb/domain/domain.conf
 sed -i .bak "s/XX/${NUMBER}/" /usr/local/etc/namedb/domain/domain.conf
 
-chown 1001 /usr/local/etc/namedb/domain.conf
+chown 1001 /usr/local/etc/namedb/domain/domain.conf
 chmod 777 /usr/local/etc/namedb/named.conf
+chmod 777 /usr/local/etc/namedb/domain
 
 # Postinstall
 ##############
